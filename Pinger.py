@@ -7,11 +7,11 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 def ping(website=None):
     try:
-        requests.get("https://"+website)
+        requests.get(f"https://{website}")
         return True
     except:
         try:
-            requests.get("http://"+website)
+            requests.get(f"http://{website}")
             return True
         except:
             try:
@@ -27,8 +27,8 @@ while True:
     for site in sites:
         output = ping(site)
         if output == True:
-            status = status + f'{site} is up\n'
+            status = f'{status}{site} is up\n'
         else:
-            status = status + f'{site} is down\n'
+            status = f'{status}{site} is down\n'
     print(f'{status}\n')
     sleep(10)
